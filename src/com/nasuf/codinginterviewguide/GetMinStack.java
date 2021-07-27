@@ -12,6 +12,10 @@ import java.util.Stack;
  */
 public class GetMinStack {
 
+    /**
+     * 时间复杂度：O(1)
+     * 空间复杂度：O(n)
+     */
     class MyStack1 {
         private Stack<Integer> stackData;
         private Stack<Integer> stackMin;
@@ -47,6 +51,10 @@ public class GetMinStack {
         }
     }
 
+    /**
+     * 时间复杂度：O(1)
+     * 空间复杂度：O(n)
+     */
     class MyStack2 {
         private Stack<Integer> stackData;
         private Stack<Integer> stackMin;
