@@ -56,12 +56,10 @@ public class BestTimeToBuyAndSellStockIi {
             int low = Integer.MAX_VALUE;
             int totalProfit = 0;
             for (int i = 0; i < prices.length; i++) {
-                if (prices[i] < low) {
-                    low = prices[i];
-                } else {
+                if (prices[i] > low) {
                     totalProfit += (prices[i] - low);
-                    low = prices[i];
                 }
+                low = prices[i];
             }
             return totalProfit;
         }
