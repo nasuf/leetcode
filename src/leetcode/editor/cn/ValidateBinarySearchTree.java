@@ -67,7 +67,8 @@ public class ValidateBinarySearchTree {
     }
 
     class Solution {
-        public boolean isValidBST(TreeNode root) {
+        // 递归算法
+        /*public boolean isValidBST(TreeNode root) {
             return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
         }
 
@@ -79,6 +80,22 @@ public class ValidateBinarySearchTree {
                 return false;
             }
             return isValidBST(node.left, lower, node.val) && isValidBST(node.right, node.val, upper);
+        }*/
+
+        // 中序遍历算法
+        long pre = Long.MIN_VALUE;
+        public boolean isValidBST(TreeNode root) {
+            if (root == null) {
+                return true;
+            }
+            if (!isValidBST(root.left)) {
+                return false;
+            }
+            if (root.val <= pre) {
+                return false;
+            }
+            pre = root.val;
+            return isValidBST(root.right);
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
