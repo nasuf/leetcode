@@ -58,7 +58,10 @@ public class BinaryTreeLevelOrderTraversal {
     }
 
     class Solution {
-        List<List<Integer>> result = new ArrayList<>();
+        /**
+         * 广度优先 - 递归算法
+         */
+        /*List<List<Integer>> result = new ArrayList<>();
         Queue<TreeNode> queue =  new LinkedList<>();
         public List<List<Integer>> levelOrder(TreeNode root) {
             if (root == null) {
@@ -87,6 +90,35 @@ public class BinaryTreeLevelOrderTraversal {
                 queue = nextQueue;
                 levelOrder(queue, result);
             }
+        }*/
+
+        /**
+         * 广度优先 - 进阶版
+         */
+        public List<List<Integer>> levelOrder(TreeNode root) {
+            List<List<Integer>> ret = new ArrayList<List<Integer>>();
+            if (root == null) {
+                return ret;
+            }
+
+            Queue<TreeNode> queue = new LinkedList<TreeNode>();
+            queue.offer(root);
+            while (!queue.isEmpty()) {
+                List<Integer> level = new ArrayList<Integer>();
+                int currentLevelSize = queue.size();
+                for (int i = 1; i <= currentLevelSize; ++i) {
+                    TreeNode node = queue.poll();
+                    level.add(node.val);
+                    if (node.left != null) {
+                        queue.offer(node.left);
+                    }
+                    if (node.right != null) {
+                        queue.offer(node.right);
+                    }
+                }
+                ret.add(level);
+            }
+            return ret;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
