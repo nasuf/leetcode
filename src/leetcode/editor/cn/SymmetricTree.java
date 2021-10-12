@@ -32,24 +32,40 @@
 
 package leetcode.editor.cn;
 
-import javax.xml.soap.Node;
 import java.util.*;
 
 public class SymmetricTree {
     public static void main(String[] args) {
         Solution solution = new SymmetricTree().new Solution();
-        TreeNode node = new TreeNode(1);
-        node.left = new TreeNode(2);
-        node.right = new TreeNode(2);
-        node.left.left = null;
-        node.left.right = new TreeNode(3);
-        node.right.left = null;
-        node.right.right = new TreeNode(3);
-        solution.isSymmetric(node);
+//        TreeNode node = new TreeNode(1);
+//        node.left = new TreeNode(2);
+//        node.right = new TreeNode(2);
+//        node.left.left = null;
+//        node.left.right = new TreeNode(3);
+//        node.right.left = null;
+//        node.right.right = new TreeNode(3);
+//        solution.isSymmetric(node);
 //        System.out.println(null == null);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
 
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 
     class Solution {
         /**
@@ -101,23 +117,4 @@ public class SymmetricTree {
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
-}
-
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode() {
-    }
-
-    TreeNode(int val) {
-        this.val = val;
-    }
-
-    TreeNode(int val, TreeNode left, TreeNode right) {
-        this.val = val;
-        this.left = left;
-        this.right = right;
-    }
 }
