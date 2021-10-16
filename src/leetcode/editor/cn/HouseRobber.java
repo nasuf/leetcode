@@ -42,7 +42,7 @@ public class HouseRobber {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int rob(int[] nums) {
+        /*public int rob(int[] nums) {
             int N = nums.length;
             int[] dp = new int[N + 1];
             dp[0] = 0;
@@ -51,6 +51,26 @@ public class HouseRobber {
                 dp[i] = Math.max(dp[i - 1], nums[i - 1] + dp[i - 2]);
             }
             return dp[N];
+        }*/
+
+        /**
+         * 空间优化版
+         */
+        public int rob(int[] nums) {
+            int prev = 0;
+            int curr = 0;
+
+            // 每次循环，计算“偷到当前房子为止的最大金额”
+            for (int i : nums) {
+                // 循环开始时，curr 表示 dp[k-1]，prev 表示 dp[k-2]
+                // dp[k] = max{ dp[k-1], dp[k-2] + i }
+                int temp = Math.max(curr, prev + i);
+                prev = curr;
+                curr = temp;
+                // 循环结束时，curr 表示 dp[k]，prev 表示 dp[k-1]
+            }
+
+            return curr;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
