@@ -55,7 +55,7 @@ public class FizzBuzz {
         public List<String> fizzBuzz(int n) {
             List<String> ret = new ArrayList<>();
             for (int i = 1; i <= n; i++) {
-                if (i % 3 == 0) {
+                /*if (i % 3 == 0) {
                     if (i % 5 == 0) {
                         ret.add("FizzBuzz");
                     } else {
@@ -65,7 +65,19 @@ public class FizzBuzz {
                     ret.add("Buzz");
                 } else {
                     ret.add(i + "");
+                }*/
+                // 进阶版
+                StringBuffer sb = new StringBuffer();
+                if (i % 3 == 0) {
+                    sb.append("Fizz");
                 }
+                if (i % 5 == 0) {
+                    sb.append("Buzz");
+                }
+                if (sb.length() == 0) {
+                    sb.append(i);
+                }
+                ret.add(sb.toString());
             }
             return ret;
         }
