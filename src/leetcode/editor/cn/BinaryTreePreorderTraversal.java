@@ -56,6 +56,7 @@ package leetcode.editor.cn;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class BinaryTreePreorderTraversal {
     public static void main(String[] args) {
@@ -87,7 +88,7 @@ public class BinaryTreePreorderTraversal {
         /**
          * 递归算法
          */
-        public List<Integer> preorderTraversal(TreeNode root) {
+        /*public List<Integer> preorderTraversal(TreeNode root) {
             List<Integer> list = new ArrayList<>();
             preorderTraversal(root, list);
             return list;
@@ -100,7 +101,31 @@ public class BinaryTreePreorderTraversal {
             result.add(root.val);
             preorderTraversal(root.left, result);
             preorderTraversal(root.right, result);
+        }*/
+
+        /**
+         * 迭代算法
+         */
+        public List<Integer> preorderTraversal(TreeNode root) {
+            List<Integer> list = new ArrayList<>();
+            Stack<TreeNode> stack = new Stack<>();
+            stack.push(root);
+            if (root == null) {
+                return list;
+            }
+            while (!stack.empty()) {
+                TreeNode node = stack.pop();
+                list.add(node.val);
+                if (node.right != null) {
+                    stack.push(node.right);
+                }
+                if (node.left != null) {
+                    stack.push(node.left);
+                }
+            }
+            return list;
         }
+
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
