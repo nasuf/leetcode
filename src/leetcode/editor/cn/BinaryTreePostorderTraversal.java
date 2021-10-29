@@ -67,7 +67,7 @@ public class BinaryTreePostorderTraversal {
         /**
          * 迭代算法
          */
-        public List<Integer> postorderTraversal(TreeNode root) {
+        /*public List<Integer> postorderTraversal(TreeNode root) {
             List<Integer> res = new ArrayList<Integer>();
             if (root == null) {
                 return res;
@@ -88,6 +88,29 @@ public class BinaryTreePostorderTraversal {
                 } else {
                     stack.push(root);
                     root = root.right;
+                }
+            }
+            return res;
+        }*/
+
+        /**
+         * 先序遍历的逆序
+         */
+        public List<Integer> postorderTraversal(TreeNode root) {
+            List<Integer> res = new ArrayList<>();
+            if (root == null) {
+                return res;
+            }
+            Stack<TreeNode> stack = new Stack<>();
+            stack.add(root);
+            while (!stack.isEmpty()) {
+                TreeNode node = stack.pop();
+                res.add(0, node.val);
+                if (node.left != null) {
+                    stack.add(node.left);
+                }
+                if (node.right != null) {
+                    stack.add(node.right);
                 }
             }
             return res;
