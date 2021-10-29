@@ -58,42 +58,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode() {
-    }
-
-    TreeNode(int val) {
-        this.val = val;
-    }
-
-    TreeNode(int val, TreeNode left, TreeNode right) {
-        this.val = val;
-        this.left = left;
-        this.right = right;
-    }
-
-}
-
 public class BinaryTreeInorderTraversal {
     public static void main(String[] args) {
         Solution solution = new BinaryTreeInorderTraversal().new Solution();
-        /**
-         *      4
-         *     / \
-         *    2   5
-         *   / \
-         *  1   3
-         */
-        TreeNode root = new TreeNode(4);
-        root.left = new TreeNode(2);
-        root.left.left = new TreeNode(1);
-        root.left.right = new TreeNode(3);
-        root.right = new TreeNode(5);
-        solution.inorderTraversal(root);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
