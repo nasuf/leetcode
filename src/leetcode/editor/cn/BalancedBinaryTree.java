@@ -52,7 +52,7 @@ public class BalancedBinaryTree {
         /**
          * 自顶向下
          */
-        public boolean isBalanced(TreeNode root) {
+        /*public boolean isBalanced(TreeNode root) {
             if (root == null)
                 return true;
             else
@@ -64,6 +64,25 @@ public class BalancedBinaryTree {
                 return 0;
             else
                 return Math.max(height(root.left), height(root.right)) + 1;
+        }*/
+
+        /**
+         * 自底向上
+         */
+        public boolean isBalanced(TreeNode root) {
+            return height(root) != -1;
+        }
+
+        private int height(TreeNode root) {
+            if (root == null)
+                return 0;
+            int left = height(root.left);
+            if (left == -1)
+                return -1;
+            int right = height(root.right);
+            if (right == -1)
+                return -1;
+            return Math.abs(left - right) < 2 ? Math.max(left, right) + 1 : -1;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
