@@ -51,6 +51,17 @@ import java.util.Stack;
 public class PathSumIi {
     public static void main(String[] args) {
         Solution solution = new PathSumIi().new Solution();
+        /**
+         *     1
+         *   2   3
+         *    5 4
+         */
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.right = new TreeNode(5);
+        root.right.left = new TreeNode(4);
+        solution.pathSum(root, 8);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
