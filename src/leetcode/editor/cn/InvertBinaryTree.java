@@ -27,6 +27,9 @@
 
 package leetcode.editor.cn;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class InvertBinaryTree {
     public static void main(String[] args) {
         Solution solution = new InvertBinaryTree().new Solution();
@@ -34,7 +37,10 @@ public class InvertBinaryTree {
     //leetcode submit region begin(Prohibit modification and deletion)
 
     class Solution {
-        public TreeNode invertTree(TreeNode root) {
+        /**
+         * 递归算法
+         */
+        /*public TreeNode invertTree(TreeNode root) {
             if (root == null) {
                 return null;
             }
@@ -43,7 +49,33 @@ public class InvertBinaryTree {
             root.left = right;
             root.right = left;
             return root;
+        }*/
+
+        /**'
+         * 迭代算法
+         */
+        public TreeNode invertTree(TreeNode root) {
+            if (root == null) {
+                return null;
+            }
+            Queue<TreeNode> queue = new LinkedList<>();
+            queue.add(root);
+            while (!queue.isEmpty()) {
+                TreeNode top = queue.poll();
+                TreeNode left = top.left;
+                top.left = top.right;
+                top.right = left;
+                if (top.left != null) {
+                    queue.add(top.left);
+                }
+                if (top.right != null) {
+                    queue.add(top.right);
+                }
+            }
+            return root;
         }
+
+
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
