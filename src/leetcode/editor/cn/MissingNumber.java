@@ -62,13 +62,28 @@ public class MissingNumber {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int missingNumber(int[] nums) {
+        /**
+         * 排序算法
+         */
+        /*public int missingNumber(int[] nums) {
             Arrays.sort(nums);
             for (int i = 0; i < nums.length; i++) {
                 if (nums[i] != i)
                     return i;
             }
             return nums.length;
+        }*/
+
+        /**
+         * 等差数列算法
+         */
+        public int missingNumber(int[] nums) {
+            int expectedSum = (1 + nums.length) * nums.length / 2;
+            int sum = 0;
+            for (int i = 0; i < nums.length; i++) {
+                sum += nums[i];
+            }
+            return expectedSum - sum;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
