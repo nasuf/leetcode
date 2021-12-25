@@ -33,14 +33,28 @@
 
 package leetcode.editor.cn;
 
+import com.sun.org.apache.xerces.internal.dom.DeepNodeListImpl;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class MinimumDepthOfBinaryTree {
     public static void main(String[] args) {
         Solution solution = new MinimumDepthOfBinaryTree().new Solution();
+        TreeNode root = new TreeNode(3);
+        root.left = new TreeNode(9);
+        root.right = new TreeNode(20);
+        root.right.left = new TreeNode(15);
+        root.right.right = new TreeNode(7);
+        solution.minDepth(root);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int minDepth(TreeNode root) {
+        /**
+         * DFS算法
+         */
+        /*public int minDepth(TreeNode root) {
             if (root == null)
                 return 0;
             if (root.left == null)
@@ -48,6 +62,38 @@ public class MinimumDepthOfBinaryTree {
             if (root.right == null)
                 return minDepth(root.left) + 1;
             return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
+        }*/
+
+        /**
+         * BFS算法
+         *
+         *        3
+         *      9  20
+         *        15 7
+         */
+        public int minDepth(TreeNode root) {
+            if (root == null)
+                return 0;
+            Queue<TreeNode> queue = new LinkedList<>();
+            queue.offer(root);
+            int depth = 1;
+            while (!queue.isEmpty()) {
+                int size = queue.size();
+                for (int i = 0; i < size; i++) {
+                    TreeNode node = queue.poll();
+                    if (node.left == null && node.right == null) {
+                        return depth;
+                    }
+                    if (node.left != null) {
+                        queue.offer(node.left);
+                    }
+                    if (node.right != null) {
+                        queue.offer(node.right);
+                    }
+                }
+                depth++;
+            }
+            return depth;
         }
 
     }
