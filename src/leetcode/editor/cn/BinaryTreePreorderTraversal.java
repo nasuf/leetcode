@@ -87,7 +87,7 @@ public class BinaryTreePreorderTraversal {
         /**
          * 迭代算法
          */
-        public List<Integer> preorderTraversal(TreeNode root) {
+        /*public List<Integer> preorderTraversal(TreeNode root) {
             List<Integer> list = new ArrayList<>();
             Stack<TreeNode> stack = new Stack<>();
             stack.push(root);
@@ -105,8 +105,39 @@ public class BinaryTreePreorderTraversal {
                 }
             }
             return list;
-        }
+        }*/
 
+        /**
+         * Moris算法
+         */
+        public List<Integer> preorderTraversal(TreeNode root) {
+            List<Integer> list = new ArrayList<>();
+            if (root == null) {
+                return list;
+            }
+            TreeNode cur1 = root;
+            TreeNode cur2 = null;
+            while (cur1 != null) {
+                cur2 = cur1.left;
+                if (cur2 != null) {
+                    while (cur2.right != null && cur2.right != cur1) {
+                        cur2 = cur2.right;
+                    }
+                    if (cur2.right == null) {
+                        cur2.right = cur1;
+                        list.add(cur1.val);
+                        cur1 = cur1.left;
+                        continue;
+                    } else {
+                        cur2.right = null;
+                    }
+                } else {
+                    list.add(cur1.val);
+                }
+                cur1 = cur1.right;
+            }
+            return list;
+        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
