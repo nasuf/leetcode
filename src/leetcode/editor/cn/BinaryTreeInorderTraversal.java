@@ -80,7 +80,7 @@ public class BinaryTreeInorderTraversal {
         /**
          * 迭代
          */
-        List<Integer> list = new ArrayList<>();
+        /*List<Integer> list = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();
         public List<Integer> inorderTraversal(TreeNode root) {
             while (root != null || !stack.isEmpty()) {
@@ -91,6 +91,36 @@ public class BinaryTreeInorderTraversal {
                 root = stack.pop();
                 list.add(root.val);
                 root = root.right;
+            }
+            return list;
+        }*/
+
+        /**
+         * Morris遍历
+         */
+        public List<Integer> inorderTraversal(TreeNode root) {
+            List<Integer> list = new ArrayList<>();
+            if (root == null) {
+                return list;
+            }
+            TreeNode cur1 = root;
+            TreeNode cur2 = null;
+            while (cur1 != null) {
+                cur2 = cur1.left;
+                if (cur2 != null) {
+                    while (cur2.right != null && cur2.right != cur1) {
+                        cur2 = cur2.right;
+                    }
+                    if (cur2.right == null) {
+                        cur2.right = cur1;
+                        cur1 = cur1.left;
+                        continue;
+                    } else {
+                        cur2.right = null;
+                    }
+                }
+                list.add(cur1.val);
+                cur1 = cur1.right;
             }
             return list;
         }
