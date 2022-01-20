@@ -75,15 +75,19 @@ public class ImplementStackUsingQueues {
         }
 
         public void push(int x) {
-            queue.addLast(x);
+            int n = queue.size();
+            queue.offer(x);
+            for (int i = 0; i < n; i++) {
+                queue.offer(queue.poll());
+            }
         }
 
         public int pop() {
-            return queue.pollLast();
+            return queue.poll();
         }
 
         public int top() {
-            return queue.peekLast();
+            return queue.peek();
         }
 
         public boolean empty() {
