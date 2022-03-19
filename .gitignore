@@ -2,3 +2,4 @@
 *.iml
 out/*
 src/leetcode/editor/cn/all.json
+.DS_Store
