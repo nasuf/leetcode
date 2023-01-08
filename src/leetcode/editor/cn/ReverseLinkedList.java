@@ -67,7 +67,10 @@ public class ReverseLinkedList {
     }*/
 
     class Solution {
-        public ListNode reverseList(ListNode head) {
+        /**
+         * 迭代
+         */
+       /* public ListNode reverseList(ListNode head) {
             ListNode prev = null;
             ListNode cur = head;
             while (cur != null) {
@@ -77,6 +80,19 @@ public class ReverseLinkedList {
                 cur = next;
             }
             return prev;
+        }*/
+
+        /**
+         * 递归
+         */
+        public ListNode reverseList(ListNode head) {
+            if (head == null || head.next == null) {
+                return head;
+            }
+            ListNode newHead = reverseList(head.next);
+            head.next.next = head;
+            head.next = null;
+            return newHead;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
