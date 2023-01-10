@@ -46,7 +46,7 @@ public class SubtractTheProductAndSumOfDigitsOfAnInteger {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int subtractProductAndSum(int n) {
+        /*public int subtractProductAndSum(int n) {
             List<Integer> list = new ArrayList<>();
             int d = 10;
             char[] chars = String.valueOf(n).toCharArray();
@@ -54,6 +54,17 @@ public class SubtractTheProductAndSumOfDigitsOfAnInteger {
             int b = 1;
             for (int i = 0; i < chars.length; i++) {
                 int digit = Character.digit(chars[i], 10);
+                a += digit;
+                b *= digit;
+            }
+            return b - a;
+        }*/
+        public int subtractProductAndSum(int n) {
+            int a = 0;
+            int b = 1;
+            while (n > 0) {
+                int digit = n % 10;
+                n /= 10;
                 a += digit;
                 b *= digit;
             }
