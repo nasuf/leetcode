@@ -60,7 +60,7 @@ public class SwapNodesInPairs {
         /**
          * 递归算法
          */
-        public ListNode swapPairs(ListNode head) {
+        /*public ListNode swapPairs(ListNode head) {
             if (head == null || head.next == null) {
                 return head;
             }
@@ -68,6 +68,23 @@ public class SwapNodesInPairs {
             head.next = swapPairs(next.next);
             next.next = head;
             return next;
+        }*/
+        /**
+         * 迭代算法
+         */
+        public ListNode swapPairs(ListNode head) {
+            ListNode prev = new ListNode();
+            prev.next = head;
+            ListNode tmp = prev;
+            while (prev.next != null && prev.next.next != null) {
+                ListNode start = prev.next;
+                ListNode end = prev.next.next;
+                prev.next = end;
+                start.next = end.next;
+                end.next = start;
+                prev = start;
+            }
+            return tmp.next;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
