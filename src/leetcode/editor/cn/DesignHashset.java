@@ -98,7 +98,7 @@ public class DesignHashset {
             return false;
         }
 
-        private static int hash(int key) {
+        private int hash(int key) {
             return key % BASE;
         }
     }
