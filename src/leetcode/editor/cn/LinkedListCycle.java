@@ -111,7 +111,6 @@ public class LinkedListCycle {
     }
 
 
-
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
