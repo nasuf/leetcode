@@ -60,7 +60,10 @@ public class CountingBits {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int[] countBits(int n) {
+        /**
+         * Brian Kernighan 算法
+         */
+        /*public int[] countBits(int n) {
             int[] ret = new int[n + 1];
             for (int i = 0; i <= n; i++) {
                 ret[i] = count(i);
@@ -75,6 +78,21 @@ public class CountingBits {
                 count++;
             }
             return count;
+        }*/
+
+        /**
+         * 动态规划 - 最高有效位算法
+         */
+        public int[] countBits(int n) {
+            int[] bits = new int[n + 1];
+            int high = 0;
+            for (int i = 1; i <= n; i++) {
+                if ((i & (i - 1)) == 0) {
+                    high = i;
+                }
+                bits[i] = bits[i - high] + 1;
+            }
+            return bits;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
