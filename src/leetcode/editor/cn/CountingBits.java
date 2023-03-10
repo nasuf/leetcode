@@ -83,7 +83,7 @@ public class CountingBits {
         /**
          * 动态规划 - 最高有效位算法
          */
-        public int[] countBits(int n) {
+        /*public int[] countBits(int n) {
             int[] bits = new int[n + 1];
             int high = 0;
             for (int i = 1; i <= n; i++) {
@@ -91,6 +91,16 @@ public class CountingBits {
                     high = i;
                 }
                 bits[i] = bits[i - high] + 1;
+            }
+            return bits;
+        }*/
+        /**
+         * 动态规划 - 最低有效位算法
+         */
+        public int[] countBits(int n) {
+            int[] bits = new int[n + 1];
+            for (int i = 1; i <= n ; i++) {
+                bits[i] = bits[i >> 1] + (i & 1);
             }
             return bits;
         }
