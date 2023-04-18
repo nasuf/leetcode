@@ -70,7 +70,7 @@ public class MaximumSubarray {
      * 如果为负数，但是没有导致sum为负，那么判断max的时候，肯定是不包含这一项，sum为之前项的和
      */
     class Solution {
-        public int maxSubArray(int[] nums) {
+        /*public int maxSubArray(int[] nums) {
             int ans = nums[0];
             int sum = 0;
             for(int num: nums) {
@@ -82,6 +82,26 @@ public class MaximumSubarray {
                 ans = Math.max(ans, sum);
             }
             return ans;
+        }*/
+
+        /**
+         * 动态规划算法
+         * dp[i]定义为：以nums[i]为结尾的最大连续子数组
+         */
+        public int maxSubArray(int[] nums) {
+            if (nums.length == 1) {
+                return nums[0];
+            }
+            int[] dp = new int[nums.length];
+            dp[0] = nums[0];
+            for (int i = 1; i < nums.length; i++) {
+                dp[i] = Math.max(nums[i], nums[i] + dp[i - 1]);
+            }
+            int result = Integer.MIN_VALUE;
+            for (int i = 0; i < dp.length; i++) {
+                result = Math.max(result, dp[i]);
+            }
+            return result;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
