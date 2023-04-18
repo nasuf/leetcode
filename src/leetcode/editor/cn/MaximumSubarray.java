@@ -88,7 +88,7 @@ public class MaximumSubarray {
          * 动态规划算法
          * dp[i]定义为：以nums[i]为结尾的最大连续子数组
          */
-        public int maxSubArray(int[] nums) {
+        /*public int maxSubArray(int[] nums) {
             if (nums.length == 1) {
                 return nums[0];
             }
@@ -102,6 +102,23 @@ public class MaximumSubarray {
                 result = Math.max(result, dp[i]);
             }
             return result;
+        }*/
+
+        /**
+         * 动态规划算法
+         * 由于dp[i]仅与dp[i-1]有关，所以可以进一步压缩空间
+         */
+        public int maxSubArray(int[] nums) {
+            if (nums.length == 1) {
+                return nums[0];
+            }
+            int dp_0 = nums[0], dp_1 = 0, res = nums[0];
+            for (int i = 1; i < nums.length; i++) {
+                dp_1 = Math.max(nums[i], nums[i] + dp_0);
+                dp_0 = dp_1;
+                res = Math.max(res, dp_1);
+            }
+            return res;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
