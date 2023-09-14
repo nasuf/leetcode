@@ -35,6 +35,7 @@
  */
 package leetcode.editor.cn;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,7 +47,8 @@ public class MajorityElement {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int majorityElement(int[] nums) {
+        // 哈希法
+        /*public int majorityElement(int[] nums) {
             Map<Integer, Integer> map = new HashMap<>();
             for (int i = 0; i < nums.length; i++) {
                 if (map.containsKey(nums[i])) {
@@ -62,6 +64,12 @@ public class MajorityElement {
                 }
             }
             return maxEntry.getKey();
+        }*/
+
+        // 排序
+        public int majorityElement(int[] nums) {
+            Arrays.sort(nums);
+            return nums[nums.length / 2];
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
