@@ -35,10 +35,7 @@
  */
 package leetcode.editor.cn;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class MajorityElement {
     public static void main(String[] args) {
@@ -67,9 +64,27 @@ public class MajorityElement {
         }*/
 
         // 排序
-        public int majorityElement(int[] nums) {
+        /*public int majorityElement(int[] nums) {
             Arrays.sort(nums);
             return nums[nums.length / 2];
+        }*/
+
+        // 随机数
+        public int majorityElement(int[] nums) {
+            Random random = new Random();
+            while (true) {
+                int target = nums[random.nextInt(nums.length)];
+                int mid = nums.length / 2;
+                int count = 0;
+                for (int num : nums) {
+                    if (num == target) {
+                        count++;
+                    }
+                }
+                if (count > mid) {
+                    return target;
+                }
+            }
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
