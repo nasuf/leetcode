@@ -35,19 +35,17 @@
 
 package leetcode.editor.cn;
 
-import java.util.Stack;
-
 public class MergeSortedArray {
     public static void main(String[] args) {
         Solution solution = new MergeSortedArray().new Solution();
-        int[] nums1 = new int[]{1, 3, 4, 0, 0};
-        int[] nums2 = new int[]{2, 3};
-        solution.merge(nums1, 3, nums2, 2);
+        int[] nums1 = new int[]{2, 3, 0, 0, 0};
+        int[] nums2 = new int[]{1, 3, 5};
+        solution.merge(nums1, 2, nums2, 3);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public void merge(int[] nums1, int m, int[] nums2, int n) {
+        /*public void merge(int[] nums1, int m, int[] nums2, int n) {
             int len1 = m - 1;
             int len2 = n - 1;
             int len = m + n - 1;
@@ -57,6 +55,26 @@ public class MergeSortedArray {
             }
             // 表示将nums2数组从下标0位置开始，拷贝到nums1数组中，从下标0位置开始，长度为len2+1
             System.arraycopy(nums2, 0, nums1, 0, len2 + 1);
+        }*/
+
+        // 双指针法
+        public void merge(int[] nums1, int m, int[] nums2, int n) {
+            int p1 = 0, p2 = 0;
+            int cur = 0;
+            int[] ret = new int[m + n];
+            while (p1 < m || p2 < n) {
+                if (p1 == m) {
+                    cur = nums2[p2++];
+                } else if (p2 == n) {
+                    cur = nums1[p1++];
+                } else if (nums1[p1] < nums2[p2]) {
+                    cur = nums1[p1++];
+                } else {
+                    cur = nums2[p2++];
+                }
+                ret[p1 + p2 - 1] = cur;
+            }
+            System.arraycopy(ret, 0, nums1, 0, ret.length);
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
