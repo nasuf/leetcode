@@ -97,11 +97,11 @@ public class BinaryTreePreorderTraversal {
             while (!stack.isEmpty()) {
                 TreeNode top = stack.pop();
                 list.add(top.val);
-                if (null != top.left) {
-                    stack.push(top.left);
-                }
                 if (null != top.right) {
                     stack.push(top.right);
+                }
+                if (null != top.left) {
+                    stack.push(top.left);
                 }
             }
             return list;
