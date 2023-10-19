@@ -56,7 +56,6 @@ package leetcode.editor.cn;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 public class BinaryTreePreorderTraversal {
     public static void main(String[] args) {
@@ -69,74 +68,19 @@ public class BinaryTreePreorderTraversal {
         /**
          * 递归算法
          */
-        /*public List<Integer> preorderTraversal(TreeNode root) {
-            List<Integer> list = new ArrayList<>();
-            preorderTraversal(root, list);
-            return list;
+        public List<Integer> preorderTraversal(TreeNode root) {
+            List<Integer> result = new ArrayList<>();
+            return preOrder(result, root);
         }
 
-        public void preorderTraversal(TreeNode root, List<Integer> result) {
-            if (root == null) {
-                return;
+        public List<Integer> preOrder(List<Integer> result, TreeNode root) {
+            if (null == root) {
+                return result;
             }
             result.add(root.val);
-            preorderTraversal(root.left, result);
-            preorderTraversal(root.right, result);
-        }*/
-
-        /**
-         * 迭代算法
-         */
-        /*public List<Integer> preorderTraversal(TreeNode root) {
-            List<Integer> list = new ArrayList<>();
-            Stack<TreeNode> stack = new Stack<>();
-            stack.push(root);
-            if (root == null) {
-                return list;
-            }
-            while (!stack.empty()) {
-                TreeNode node = stack.pop();
-                list.add(node.val);
-                if (node.right != null) {
-                    stack.push(node.right);
-                }
-                if (node.left != null) {
-                    stack.push(node.left);
-                }
-            }
-            return list;
-        }*/
-
-        /**
-         * Moris算法
-         */
-        public List<Integer> preorderTraversal(TreeNode root) {
-            List<Integer> list = new ArrayList<>();
-            if (root == null) {
-                return list;
-            }
-            TreeNode cur1 = root;
-            TreeNode cur2 = null;
-            while (cur1 != null) {
-                cur2 = cur1.left;
-                if (cur2 != null) {
-                    while (cur2.right != null && cur2.right != cur1) {
-                        cur2 = cur2.right;
-                    }
-                    if (cur2.right == null) {
-                        cur2.right = cur1;
-                        list.add(cur1.val);
-                        cur1 = cur1.left;
-                        continue;
-                    } else {
-                        cur2.right = null;
-                    }
-                } else {
-                    list.add(cur1.val);
-                }
-                cur1 = cur1.right;
-            }
-            return list;
+            preOrder(result, root.left);
+            preOrder(result, root.right);
+            return result;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
