@@ -69,36 +69,45 @@ public class BinaryTreeInorderTraversal {
          * 递归
          */
         /*public List<Integer> inorderTraversal(TreeNode root) {
-            if(root != null) {
-                inorderTraversal(root.left);
-                list.add(root.val);
-                inorderTraversal(root.right);
+            List<Integer> res = new ArrayList<>();
+            return traversal(root, res);
+        }
+
+        public List<Integer> traversal(TreeNode root, List<Integer> res) {
+            if (root == null) {
+                return res;
             }
-            return list;
+            traversal(root.left, res);
+            res.add(root.val);
+            traversal(root.right, res);
+            return res;
         }*/
 
         /**
          * 迭代
          */
-        /*List<Integer> list = new ArrayList<>();
-        Stack<TreeNode> stack = new Stack<>();
         public List<Integer> inorderTraversal(TreeNode root) {
-            while (root != null || !stack.isEmpty()) {
+            List<Integer> res = new ArrayList<>();
+            if (root == null) {
+                return res;
+            }
+            Stack<TreeNode> stack = new Stack<>();
+            while (!stack.isEmpty() || root != null) {
                 while (root != null) {
                     stack.push(root);
                     root = root.left;
                 }
                 root = stack.pop();
-                list.add(root.val);
+                res.add(root.val);
                 root = root.right;
             }
-            return list;
-        }*/
+            return res;
+        }
 
         /**
          * Morris遍历
          */
-        public List<Integer> inorderTraversal(TreeNode root) {
+        /*public List<Integer> inorderTraversal(TreeNode root) {
             List<Integer> list = new ArrayList<>();
             if (root == null) {
                 return list;
@@ -123,7 +132,7 @@ public class BinaryTreeInorderTraversal {
                 cur1 = cur1.right;
             }
             return list;
-        }
+        }*/
     }
 //leetcode submit region end(Prohibit modification and deletion)
 

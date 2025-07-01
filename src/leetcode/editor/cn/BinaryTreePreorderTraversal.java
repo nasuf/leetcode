@@ -70,41 +70,42 @@ public class BinaryTreePreorderTraversal {
          * 递归算法
          */
         /*public List<Integer> preorderTraversal(TreeNode root) {
-            List<Integer> result = new ArrayList<>();
-            return preOrder(result, root);
+            List<Integer> res = new ArrayList<>();
+            return traverse(root, res);
         }
 
-        public List<Integer> preOrder(List<Integer> result, TreeNode root) {
-            if (null == root) {
-                return result;
+        public List<Integer> traverse(TreeNode root, List<Integer> res) {
+            if (root == null) {
+                return new ArrayList<>();
             }
-            result.add(root.val);
-            preOrder(result, root.left);
-            preOrder(result, root.right);
-            return result;
+            res.add(root.val);
+            traverse(root.left, res);
+            traverse(root.right, res);
+            return res;
         }*/
 
         /**
          * 迭代算法
          */
         public List<Integer> preorderTraversal(TreeNode root) {
-            List<Integer> list = new ArrayList<>();
-            Stack<TreeNode> stack = new Stack<>();
-            if (null == root) {
-                return list;
+            if (root == null) {
+                return new ArrayList<>();
             }
+
+            List<Integer> res = new ArrayList<>();
+            Stack<TreeNode> stack = new Stack<>();
             stack.push(root);
             while (!stack.isEmpty()) {
-                TreeNode top = stack.pop();
-                list.add(top.val);
-                if (null != top.right) {
-                    stack.push(top.right);
+                TreeNode node = stack.pop();
+                res.add(node.val);
+                if (null != node.right) {
+                    stack.push(node.right);
                 }
-                if (null != top.left) {
-                    stack.push(top.left);
+                if (null != node.left) {
+                    stack.push(node.left);
                 }
             }
-            return list;
+            return res;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
