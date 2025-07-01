@@ -4,3 +4,4 @@ out/*
 src/leetcode/editor/cn/all.json
 .DS_Store
 *.md
+src/leetcode/editor/cn/doc
