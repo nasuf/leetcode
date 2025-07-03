@@ -57,25 +57,27 @@ public class LongestIncreasingSubsequence {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         // 动态规划算法
-        /*public int lengthOfLIS(int[] nums) {
+        // dp[i]为以第i个数字结尾的最长上升子序列的长度
+        public int lengthOfLIS(int[] nums) {
             int[] dp = new int[nums.length];
             Arrays.fill(dp, 1);
             for (int i = 0; i < nums.length; i++) {
                 for (int j = 0; j < i; j++) {
-                    if (nums[i] > nums[j]) {
+                    if (nums[j] < nums[i]) {
                         dp[i] = Math.max(dp[j] + 1, dp[i]);
                     }
                 }
             }
             int max = 0;
-            for (int j : dp) {
-                max = Math.max(max, j);
+            int length = dp.length;
+            for (int i = 0; i < length; i++) {
+                max = Math.max(max, dp[i]);
             }
             return max;
-        }*/
+        }
 
         // 二分算法
-        public int lengthOfLIS(int[] nums) {
+        /*public int lengthOfLIS(int[] nums) {
             int[] top = new int[nums.length];
             int piles = 0;
             for (int i = 0; i < nums.length; i++) {
@@ -93,7 +95,7 @@ public class LongestIncreasingSubsequence {
                 top[left] = nums[i];
             }
             return piles;
-        }
+        }*/
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
