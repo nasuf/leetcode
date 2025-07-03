@@ -38,28 +38,27 @@ import java.util.List;
 public class LargestNumber {
     public static void main(String[] args) {
         Solution solution = new LargestNumber().new Solution();
+        System.out.println(solution.largestNumber(new int[]{45, 4}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public String largestNumber(int[] nums) {
-            int length = nums.length;
-            String[] arr = new String[length];
+            String[] ss = new String[nums.length];
             for (int i = 0; i < nums.length; i++) {
-                arr[i] = String.valueOf(nums[i]);
+                ss[i] = String.valueOf(nums[i]);
             }
-            Arrays.sort(arr, (a, b) ->
-                    (b + a).compareTo(a + b)
-            );
+            Arrays.sort(ss, (a, b) -> (b + a).compareTo(a + b));
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < arr.length; i++) {
-                sb.append(arr[i]);
+            for (int i = 0; i < ss.length; i++) {
+                sb.append(ss[i]);
             }
-            String result = sb.toString();
+            String res = sb.toString();
             int k = 0;
-            while (k < result.length() - 1 && result.charAt(k) == '0')
+            while (k < res.length() - 1 && res.charAt(k) == '0') {
                 k++;
-            return result.substring(k);
+            }
+            return res.substring(k);
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
