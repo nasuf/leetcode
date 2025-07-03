@@ -65,24 +65,21 @@ public class WaysToMakeAFairArray {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int waysToMakeFair(int[] nums) {
-            int s1 = 0; // even sum
-            int s2 = 0; // odd sum
-            for (int i = 0; i < nums.length; i++) {
-                s1 += i % 2 == 0 ? nums[i] : 0;
-                s2 += i % 2 == 1 ? nums[i] : 0;
-            }
-            int t1 = 0; // even sum till v
-            int t2 = 0; // odd sum till v
+            int s0 = 0, s1 = 0;
             int ans = 0;
+            for (int i = 0; i < nums.length; i++) {
+                s0 += i % 2 == 0 ? nums[i] : 0;
+                s1 += i % 2 == 1 ? nums[i] : 0;
+            }
+            int t0 = 0, t1 = 0;
             for (int i = 0; i < nums.length; i++) {
                 int v = nums[i];
                 if (i % 2 == 0) {
-                    // even index removed
-                    ans += (s1 + t2 - t1 - v) == (t1 + s2 - t2) ? 1 : 0;
-                    t1 += v;
+                    ans += (s0 + t1 - t0 - v) == (s1 + t0 - t1) ? 1 : 0;
+                    t0 += v;
                 } else {
-                    ans += (s2 + t1 - t2 - v) == (t2 + s1 - t1) ? 1 : 0;
-                    t2 += v;
+                    ans += (s1 + t0 - t1 - v) == (s0 + t1 - t0) ? 1 : 0;
+                    t1 += v;
                 }
             }
             return ans;
