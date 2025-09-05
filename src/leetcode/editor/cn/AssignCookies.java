@@ -56,10 +56,8 @@ public class AssignCookies {
         public int findContentChildren(int[] g, int[] s) {
             Arrays.sort(g);
             Arrays.sort(s);
-            int child_length = g.length;
-            int cookie_length = s.length;
             int i = 0, j = 0;
-            while (i < child_length && j < cookie_length) {
+            while (i < g.length && j < s.length) {
                 if (g[i] <= s[j]) {
                     i++;
                 }
